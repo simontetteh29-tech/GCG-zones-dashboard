@@ -6,7 +6,7 @@ import plotly.express as px
 # PAGE CONFIG
 # ==================================================
 st.set_page_config(
-    page_title="Ghana Operational Zones Dashboard",
+    page_title="GCG Operational Zones Dashboard",
     layout="wide"
 )
 
