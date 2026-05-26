@@ -17,8 +17,10 @@ st.title("GCG Operational Zonal Offices Dashboard")
 # ==================================================
 @st.cache_data
 def load_data():
-    gdf = gpd.read_file("gadm41_GHA_2.json.zip")
-    return gdf.to_crs(epsg=4326)
+    return gpd.read_file(
+        "gadm41_GHA_2.json.zip",
+        engine="pyogrio"
+    ).to_crs(epsg=4326)
 
 gdf = load_data()
 
