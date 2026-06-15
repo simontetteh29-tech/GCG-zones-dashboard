@@ -327,19 +327,23 @@ for office, data in office_locations.items():
     else:
 
         fig.add_scattergeo(
-            lon=[data["lon"]],
-            lat=[data["lat"]],
-            mode="markers+text",
-            text=[office],
-            textposition="top center",
-            marker=dict(
-                size=14 if office == "Head Office" else 9,
-                symbol="star" if office == "Head Office" else "circle"
-            ),
-            name=office,
-            hovertemplate=hover_text + "<extra></extra>"
-        )
-
+    lon=[data["lon"]],
+    lat=[data["lat"]],
+    mode="markers+text",
+    text=[office],
+    textposition="top center",
+    textfont=dict(
+        color="black",
+        size=13,
+        family="Arial Black"
+    ),
+    marker=dict(
+        size=14 if office == "Head Office" else 9,
+        symbol="star" if office == "Head Office" else "circle"
+    ),
+    name=office,
+    hovertemplate=hover_text + "<extra></extra>"
+)
 fig.update_layout(
     height=850,
     margin=dict(l=0, r=0, t=0, b=0),
