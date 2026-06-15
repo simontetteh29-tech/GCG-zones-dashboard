@@ -255,7 +255,7 @@ office_locations = {
 
 if map_version == "New Map":
     office_locations.update({
-        "Question Mark": {"lat": 10.0000, "lon": -2.0000},
+        "Question Mark": {"lat": 9.85, "lon": -1.85},
         "Swedru Office": {"lat": 5.5415125, "lon": -0.6785781},
         "Ho Office": {"lat": 6.6088125, "lon": 0.4716406},
         "Sefwi Office": {"lat": 6.2113625, "lon": -2.4774844},
@@ -303,23 +303,42 @@ fig.update_geos(fitbounds="locations", visible=False)
 fig.update_traces(marker_line_width=0.5, marker_line_color="black")
 
 for office, data in office_locations.items():
+
     hover_text = office
     if office == "Head Office":
         hover_text += "<br><b>Oversees all zonal offices</b>"
 
-    fig.add_scattergeo(
-        lon=[data["lon"]],
-        lat=[data["lat"]],
-        mode="markers+text",
-        text=[office],
-        textposition="top center",
-        marker=dict(
-    size=14 if office == "Head Office" else 9,
-    symbol="star" if office == "Head Office" else "circle"
-),
-        name=office,
-        hovertemplate=hover_text + "<extra></extra>"
-    )
+    # Special handling for Proposed Zone
+    if office == "Question Mark":
+
+        fig.add_scattergeo(
+            lon=[data["lon"]],
+            lat=[data["lat"]],
+            mode="text",
+            text=["?"],
+            textfont=dict(
+                size=50,
+                color="black"
+            ),
+            name="Proposed Zone",
+            hovertemplate="Proposed Zone Location<extra></extra>"
+        )
+
+    else:
+
+        fig.add_scattergeo(
+            lon=[data["lon"]],
+            lat=[data["lat"]],
+            mode="markers+text",
+            text=[office],
+            textposition="top center",
+            marker=dict(
+                size=14 if office == "Head Office" else 9,
+                symbol="star" if office == "Head Office" else "circle"
+            ),
+            name=office,
+            hovertemplate=hover_text + "<extra></extra>"
+        )
 
 fig.update_layout(
     height=850,
