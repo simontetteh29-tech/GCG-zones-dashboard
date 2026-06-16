@@ -334,7 +334,7 @@ for office, data in office_locations.items():
     textposition="top center",
     textfont=dict(
         color="black",
-        size=13,
+        size=8,
         family="Arial Black"
     ),
     marker=dict(
